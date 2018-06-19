@@ -1,0 +1,7 @@
+{
+    "repo": "beehive",
+    "token": "your_github_token_here",
+    "branch": "master",
+    "user": "your_name",
+    "email": "name@example.com"
+}
