@@ -25,7 +25,8 @@ def upload(data):
                 filename=data['type'] + '_' + data['date'] + '.json'
             )
 
-            print(config['user'], config['repo'], 'data/'+data['type'], data['type'] + '_' + data['date'] + '.json')
+            print(url)
+
             message = 'doc({}):import '.format(data['type']) + data['type'] + '_' + data['date'] + '.json'
             content = base64.b64encode(json.dumps(data['content']).encode('utf-8'))
             payload = "{\n  \"message\": \""+message+"\",\n" \
@@ -38,6 +39,6 @@ def upload(data):
                 'authorization': "token " + config['token']
             }
             response = requests.request("PUT", url, data=str(payload), headers=headers)
-            print(response.text)
+            print(response,'111')
     else:
         print('no such config file : ' + config_path)

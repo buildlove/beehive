@@ -46,7 +46,7 @@ def run(app):
                 continue
             else:
                 print('{name} : {result}'.format(name=name, result=result))
-                print('upload_github')
+                print(result,"111111111111")
                 upload_github.upload(result)
         except Exception as error:
             print(error)
