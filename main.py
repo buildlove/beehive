@@ -16,7 +16,6 @@ get_path = partial(os.path.join, here)
 plugin_base = PluginBase(package=os.path.basename(__file__).split('.')[0]+'.plugins',
                          searchpath=[get_path('./builtin_plugins')])
 
-
 class Application(object):
     """load plugins Class"""
     def __init__(self, name):
@@ -61,8 +60,8 @@ def main():
     print(app)
     run(app)
 
-    # schedule.every(23).to(24).hours.do(run, app)
-    schedule.every(23).minutes.do(run, app)
+    schedule.every(23).to(24).hours.do(run, app)
+    # schedule.every(23).minutes.do(run, app)
 
     while True:
         schedule.run_pending()

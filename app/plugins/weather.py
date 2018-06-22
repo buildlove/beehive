@@ -41,7 +41,6 @@ def get_weather_info():
             }
         }
 
-
     except Exception as error:
         return {
             'code': 0,
@@ -57,7 +56,6 @@ def get_weather_info():
                 'air': 'no'
             }
         }
-
 
 def setup(app):
     print('-> Setting up : ' + __file__)
