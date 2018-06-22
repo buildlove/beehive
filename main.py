@@ -61,7 +61,7 @@ def main():
     run(app)
 
     schedule.every(23).to(24).hours.do(run, app)
-    # schedule.every(23).minutes.do(run, app)
+    # schedule.every().minutes.do(run, app)
 
     while True:
         schedule.run_pending()

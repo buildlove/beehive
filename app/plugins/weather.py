@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from user_agent import generate_user_agent, generate_navigator
 import time
 
-
 def get_weather_info():
     print("获取当日天气插件")
 
