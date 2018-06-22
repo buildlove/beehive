@@ -1,8 +1,11 @@
+# encoding=utf8  
+import sys 
 import requests
 import json
 import os
 import base64
 
+print(sys.stdout.encoding)
 
 def upload(data):
     """upload to github by api
@@ -25,8 +28,6 @@ def upload(data):
                 filename=data['type'] + '_' + data['date'] + '.json'
             )
 
-            print(url)
-
             message = 'doc({}):import '.format(data['type']) + data['type'] + '_' + data['date'] + '.json'
             content = base64.b64encode(json.dumps(data['content']).encode('utf-8'))
             payload = "{\n  \"message\": \""+message+"\",\n" \
@@ -39,6 +40,5 @@ def upload(data):
                 'authorization': "token " + config['token']
             }
             response = requests.request("PUT", url, data=str(payload), headers=headers)
-            print(response,'111')
     else:
         print('no such config file : ' + config_path)

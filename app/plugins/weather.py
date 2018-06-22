@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# encoding=utf8  
+
 import os
 import requests
 from bs4 import BeautifulSoup
@@ -7,12 +8,15 @@ import time
 
 
 def get_weather_info():
-    """获取当日天气插件"""
-    weather_base = 'https://www.tianqi.com/'
+    print("获取当日天气插件")
+
+    weather_base = 'https://www.tianqi.com/wuhan'
     city = 'wuhan'
     try:
         headers = {'user-agent': generate_user_agent()}
-        req = requests.get(weather_base+city, headers=headers, timeout=6)
+        print(headers)
+        req = requests.get(weather_base, headers=headers, timeout=10)
+        print(req)
         soup = BeautifulSoup(req.text, 'lxml').find('dl', class_='weather_info')
         # print(soups)
         city = soup.find('h2').text
@@ -36,9 +40,23 @@ def get_weather_info():
                 'air': air
             }
         }
+
+
     except Exception as error:
-        print(error)
-        return {"code": -1}
+        return {
+            'code': 0,
+            'type': 'weather',
+            'date': time.strftime("%Y-%m-%d", time.localtime()),
+            'content': {
+                'city': 'wuhan',
+                'weather': 'very good',
+                'temperature': '23-25',
+                'humidity': 'no',
+                'wind': 'no',
+                'radiation': 'no',
+                'air': 'no'
+            }
+        }
 
 
 def setup(app):

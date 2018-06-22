@@ -1,10 +1,13 @@
-# -*- coding: utf-8 -*-
+# encoding=utf8  
 import os
 from functools import partial
 from pluginbase import PluginBase
 import schedule
 import time
 import upload_github
+import json
+import sys 
+print(sys.stdout.encoding)
 
 # relative path
 here = os.path.abspath(os.path.dirname(__file__))
@@ -40,23 +43,26 @@ def run(app):
     """run plugins"""
     # print("run plugins of {name}".format(name=app.name))
     for name, func in sorted(app.functions.items()):
+        print(name, func)
         try:
             result = func()
             if result['code'] == -1:
                 continue
             else:
                 print('{name} : {result}'.format(name=name, result=result))
-                print(result,"111111111111")
                 upload_github.upload(result)
         except Exception as error:
             print(error)
 
 def main():
+    print("program start")
     # Set up applications
     app = Application('app')
+    print(app)
     run(app)
 
-    schedule.every(23).to(24).hours.do(run, app)
+    # schedule.every(23).to(24).hours.do(run, app)
+    schedule.every(23).minutes.do(run, app)
 
     while True:
         schedule.run_pending()
