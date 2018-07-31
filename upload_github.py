@@ -4,6 +4,7 @@ import requests
 import json
 import os
 import base64
+import random
 
 def upload(data):
     """upload to github by api
@@ -20,11 +21,12 @@ def upload(data):
             if config['repo'] != 'beehive':
                 print('Be careful, cowboy!')
                 return
+            MathRand = random.randrange(0,12)    
             url = "https://api.github.com/repos/{user}/{repo}/contents/{path}/{filename}".format(
                 user=config['user'],
                 repo=config['repo'],
                 path='data/'+data['type'],
-                filename=data['type'] + '_' + data['date'] + '.json'
+                filename=data['type'] + '_' + data['date'] + '_' + MathRand + '.json'
             )
 
             message = 'doc({}):import '.format(data['type']) + data['type'] + '_' + data['date'] + '.json'
