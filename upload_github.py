@@ -26,7 +26,7 @@ def upload(data):
                 user=config['user'],
                 repo=config['repo'],
                 path='data/'+data['type'],
-                filename=data['type'] + '_' + data['date'] + '_' + MathRand + '.json'
+                filename=data['type'] + '_' + data['date'] + '_' + str(MathRand) + '.json'
             )
 
             message = 'doc({}):import '.format(data['type']) + data['type'] + '_' + data['date'] + '.json'
